@@ -60,7 +60,7 @@ Client-side JavaScript is a script that runs in your browser. Effectively, clien
 
 * What is a client side library?
 
-Included via <script> tags.
+Included via \<script\> tags.
 
 * introduce jQuery. Why do we use it?
 
