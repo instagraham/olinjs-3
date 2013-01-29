@@ -11,7 +11,7 @@ We're advertising you on <http://olinjs.github.com/>. This helps engage our spon
 **Recap**:
 
 * **Express** is a *server* library. It is an abstraction for Node. Reference is here: <http://nodejs.org/api/>
-* **Jade** is a way to make *templates*, HTML pages that can have strings and other content easily added into them. Reference is here: <http://naltatis.github.com/jade-syntax-docs/>
+* **Jade** is a way to make *templates*, HTML pages that can have strings and other content easily added into them. Refernce is here: <http://naltatis.github.com/jade-syntax-docs/>
 * **Mongoose** is a *database* library. It is an abstraction for MongoDB. Reference is here: <http://mongoosejs.com/docs/guide.html>
 
 **Mongoose queries** 
@@ -94,7 +94,7 @@ There are ton of commands you can chain to a Mongoose query, check out the page 
 
 **Text Editing**
 
-Sublime Text is the best text editor (debatable, but we'll leave that for later). Get it.
+Sublime Text is the best text editor. Get it.
 
 *Install on Ubuntu:*
 
@@ -109,8 +109,6 @@ sudo apt-get install sublime-text
 Download it [here](http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1.dmg)
 
 Read about all the cool things you can do with it [here](http://www.rockettheme.com/magazine/1319-using-sublime-text-2-for-development)
-
-
 
 **Restart Server Automatically**
 
@@ -216,9 +214,9 @@ Writing HTML is easy, and everyone has a web browser. There are still some tools
 
     http://jsfiddle.net/C7S4y/1/
 
-Play around with typing HTML and clicking `Run` at the top. You'll see the page in the lower right update. If you're unfamiliar with HTML, go through [the W3C HTML tutorial](http://www.w3schools.com/html/html_intro.asp) and get more comfortable with it. In particular, take a look at **lists** and **tables**. We won't be covering html in depth in class, but you'll definitely need it.
+Play around with typing HTML and clicking `Run` at the top. You'll see the page in the lower right update. If you're unfamiliar with HTML, do through [the W3C HTML tutorial](http://www.w3schools.com/html/html_intro.asp) and get more comfortable with it. In particular, take a look at **lists** and **tables**.
 
-Note that JSFiddle let's you test what HTML *looks* like, but none of the repsonsibilities of a server (*submitting forms*, *databases*, etc.) We'll use JSFiddle when appropriate.
+Note that JSFiddle let's you test what HTML *looks* like, but none of the repsonsibilities of a server (*submitting forms*, *databases*, etc.) We'll use this when appropriate.
 
 ## The drill
 
@@ -276,18 +274,19 @@ extends layout
 block content
   h1= title
 
-  form(method='post', action='/')
+  form(method='post', action='/', id="newform")
     | New todo item:
-    input(name='todo')
+    input(name='todo', id="newinput")
     button('type='submit')
       | Done
 
-  each todo, i in todos
-    li
-      div= todo
-      form(method='post', action='/delete/' + i) 
-        button
-          | Delete
+  ul(id="todolist")
+    each todo, i in todos
+      li
+        div= todo
+        form(method='post', action='/delete/' + i) 
+          button
+            | Delete
 ```
 
 We'll explain in class briefly what this Jade means and how it relates to HTML. Take a look at <http://naltatis.github.com/jade-syntax-docs/> to help follow along in class.
@@ -345,7 +344,7 @@ Then click "Run" at the top of the page. Cool, you made your first Popup ad!
 
 ### jQuery
 
-Go to <http://jsfiddle.net/yqU6K/>. We're going to learn **jQuery**.
+Go to <http://jsfiddle.net/yqU6K/3/>. We're going to learn **jQuery**.
 
 jQuery is a way to manipulate webpages. It's all JavaScript, but it's very terse&mdash;see if you can keep up. On your webpage, go to the JavaScript panel and type in the following:
 
@@ -381,6 +380,18 @@ $('*').css('background-image', 'url(http://omfgdogs.com/omfgdogs.gif)');
 
 Oh dear god.
 
+```
+$('button').on('click', function () {
+  alert('button click!')
+})
+```
+
+Also, elements can have ids. IDs are referenced by `#` then the id name.
+
+```
+$('#first').css('background', 'red');
+```
+
 ## Embedding JavaScript into your page
 
 To embed JavaScript into your page, we first need to create a script.
@@ -405,30 +416,57 @@ $(function () {
 
 Restart your server (or if you're using supervisor, it will be done already). Note the wrapper `$(function () { ... })` around the entire script...
 
-## Events
-
-Set your `todo.js` content to:
-
-```js
-$(function () {
-  $('body').html('<h1><marquee>WHEEE</marquee></h1>')
-});
-```
-
 ## Communication between the Server and the Client: Ajax
 
 **Ajax** refers to communicating between a web page and a server using JavaScript. After your page is loaded, JavaScript takes over the role of making HTTP requests in order to add interactivity to the page.
+
+From your console, run:
 
 ```
 $.post("/", {todo: 'hi'});
 ```
 
-Communication between the client and the server-side using HTTP requests.
+Refresh the page. We did the action of adding a TODO list item without submitting a form! Now let's be cever.
 
-* Why is it useful? Give some examples
+Replace your `todo.js` with:
 
-Communicating a list
+```
+$(function () {
+  $('#newform').on('submit', function () {
+    $.post("/", $('#newform').serialize());
 
-* Run through $.get, $.post, and $.ajax
+    return false;
+  })
+})
+```
 
-* Simple "TODO" list app
+Try typing in a todo item and hit enter. It doesn't do anything; this is thanks to the `return false` in our event handler. However, refresh the page, and it's there.
+
+Since this isn't useful to the user, let's paste in this at last:
+
+```
+$(function () {
+  $('#newform').on('submit', function () {
+    $.post("/", $('#newform').serialize());
+
+    var li = $('<li>' + $('#newinput').val() + '</li>')
+    $('#todolist').append(li);
+
+    return false;
+  })
+})
+```
+
+Hint, to create a form:
+
+```
+var li = $('<li>' + $('#newinput').val() + '</li>')
+$('#todolist').append(li);
+
+var form = $('<form method="post" action="/delete/'" + $('#newform li').length + '"><button>Submit</button></form>')
+$(li).append(form);
+
+form.on('submit', function () {
+  // Can you make the delete button do the same thing?
+})
+```
