@@ -40,6 +40,24 @@ people
 
 There are ton of commands you can chain to a Mongoose query, check out the page [here](http://mongoosejs.com/docs/2.7.x/docs/query.html) for a description of all of them.
 
+**Developer Tools**
+
+Sublime Text, get it.
+
+Ubuntu:
+
+```
+sudo add-apt-repository ppa:webupd8team/sublime-text-2
+sudo apt-get update
+sudo apt-get install sublime-text
+```
+
+OSX:
+
+download it [here](http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1.dmg)
+
+
+
 ## Two More Express Features
 
 You know the drill. Fork this repository, then:
