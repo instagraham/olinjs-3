@@ -124,6 +124,22 @@ Then instead of `node app.js`, you can do:
 supervisor app.js
 ```
 
+**Using Git**
+
+Stop using `git add .` This tells git to add everything. This includes all the temp files that have the `~` extension, any embarrasing photos that you might also have put in the folder, etc.
+
+Run a `git status` to see the list of modified files. Then `git add` or `git rm` the files you want to add or delete, respectively. After that, `git commit` and `git push` as usual.
+
+There's also a magical thing called the `.gitignore` file. It tells git to ignore any files that match names listed within the file. You can add things such as 
+
+```
+*.jpg
+*~
+node_modules
+```
+
+in the `.gitignore` file and those files will no longer be added when you do a `git add`
+
 ## The drill
 
 You know it. *Fork this repository*, then:
