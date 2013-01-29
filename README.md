@@ -11,7 +11,7 @@ We're advertising you on <http://olinjs.github.com/>. This helps engage our spon
 **Recap**:
 
 * **Express** is a *server* library. It is an abstraction for Node. Reference is here: <http://nodejs.org/api/>
-* **Jade** is a way to make *templates*, HTML pages that can have strings and other content easily added into them. Refernce is here: <http://naltatis.github.com/jade-syntax-docs/>
+* **Jade** is a way to make *templates*, HTML pages that can have strings and other content easily added into them. Reference is here: <http://naltatis.github.com/jade-syntax-docs/>
 * **Mongoose** is a *database* library. It is an abstraction for MongoDB. Reference is here: <http://mongoosejs.com/docs/guide.html>
 
 **Mongoose queries** 
@@ -94,7 +94,7 @@ There are ton of commands you can chain to a Mongoose query, check out the page 
 
 **Text Editing**
 
-Sublime Text is the best text editor. Get it.
+Sublime Text is the best text editor (debatable, but we'll leave that for later). Get it.
 
 *Install on Ubuntu:*
 
@@ -216,9 +216,9 @@ Writing HTML is easy, and everyone has a web browser. There are still some tools
 
     http://jsfiddle.net/C7S4y/1/
 
-Play around with typing HTML and clicking `Run` at the top. You'll see the page in the lower right update. If you're unfamiliar with HTML, do through [the W3C HTML tutorial](http://www.w3schools.com/html/html_intro.asp) and get more comfortable with it. In particular, take a look at **lists** and **tables**.
+Play around with typing HTML and clicking `Run` at the top. You'll see the page in the lower right update. If you're unfamiliar with HTML, go through [the W3C HTML tutorial](http://www.w3schools.com/html/html_intro.asp) and get more comfortable with it. In particular, take a look at **lists** and **tables**. We won't be covering html in depth in class, but you'll definitely need it.
 
-Note that JSFiddle let's you test what HTML *looks* like, but none of the repsonsibilities of a server (*submitting forms*, *databases*, etc.) We'll use this when appropriate.
+Note that JSFiddle let's you test what HTML *looks* like, but none of the repsonsibilities of a server (*submitting forms*, *databases*, etc.) We'll use JSFiddle when appropriate.
 
 ## The drill
 
