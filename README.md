@@ -1,6 +1,6 @@
 # olin.js #3 — client side JS
 
-We'll be covering javascript on the client side.
+We'll be covering javascript on the client side. This class, we don't install anything! Cool!
 
 ## Update your Github avatars and profiles information
 
@@ -144,27 +144,6 @@ node_modules
 
 in the `.gitignore` file and those files will no longer be added when you do a `git add`
 
-## The drill
-
-You know it. *Fork this repository*, then:
-
-```
-$ git clone https://github.com/______/olinjs-3.git
-$ cd olinjs-3
-$ express
-$ [sudo] npm install
-$ node app
-Express server listening on port 3000
-```
-
-### Static Content
-
-In your application folder exists a folder `public/images`. In this directory either save or `wget` this image and name it "david.jpg":
-
-![https://twimg0-a.akamaihd.net/profile_images/1584353041/267776_10150244291269010_590714009_7743869_8142651_n.jpg](https://twimg0-a.akamaihd.net/profile_images/1584353041/267776_10150244291269010_590714009_7743869_8142651_n.jpg)
-
-Run your server (`node app`) and go to [http://localhost:3000/images/david.jpg](http://localhost:3000/images/david.jpg). And that's how you store images! And movies, stylesheets, and scripts! Think of all the cat pictures! You'll build the next Reddit in no time.
-
 <!--
 
 ### Sessions
@@ -231,13 +210,115 @@ Great, now you can understand these non-nerdy nerd shirts. See, I told you this 
 
 ![http://johngushue.typepad.com/photos/uncategorized/2007/03/23/body_html_code_tshirt.gif](http://johngushue.typepad.com/photos/uncategorized/2007/03/23/body_html_code_tshirt.gif)
 
-## Testing HTML
+## Playing with HTML
 
-Writing HTML is easy, and everyone has a web browser. There are still some tools which can come in handy. We're going to be doing some tests in this for this class. Open this address:
+Writing HTML is easy, and everyone has a web browser. There are still some tools which make this even easier. We're going to be doing some tests in this for this class. Open this address:
 
     http://jsfiddle.net/C7S4y/1/
 
 Play around with typing HTML and clicking `Run` at the top. You'll see the page in the lower right update. If you're unfamiliar with HTML, do through [the W3C HTML tutorial](http://www.w3schools.com/html/html_intro.asp) and get more comfortable with it. In particular, take a look at **lists** and **tables**.
+
+Note that JSFiddle let's you test what HTML *looks* like, but none of the repsonsibilities of a server (*submitting forms*, *databases*, etc.) We'll use this when appropriate.
+
+## The drill
+
+You know it. *Fork this repository*, then:
+
+```
+$ git clone https://github.com/______/olinjs-3.git
+$ cd olinjs-3
+$ express
+$ [sudo] npm install
+$ node app
+Express server listening on port 3000
+```
+
+## Forms in HTML
+
+We can use HTML to create a form. Let's make a very simple app that uses forms to POST data. First, manual labor.
+
+Replace the routes section you have in *app.js* with this:
+
+```
+app.get('/', routes.index);
+app.post('/', routes.index_post);
+app.post('/delete/:id', routes.index_delete);
+```
+
+Replace the *routes/index.js* file with this:
+
+```
+var todos = [];
+
+exports.index = function (req, res) {
+  res.render('index', {
+    title: 'Todo list',
+    todos: todos
+  });
+};
+
+exports.index_post = function (req, res) {
+  todos.push(req.body.todo);
+  res.redirect('/');
+};
+
+exports.index_delete = function (req, res) {
+  todos.splice(parseInt(req.params.id), 1);
+  res.redirect('/');
+};
+```
+
+And replace the *views/index.jade* file with this:
+
+```
+extends layout
+
+block content
+  h1= title
+
+  form(method='post', action='/')
+    | New todo item:
+    input(name='todo')
+    button('type='submit')
+      | Done
+
+  each todo, i in todos
+    li
+      div= todo
+      form(method='post', action='/delete/' + i) 
+        button
+          | Delete
+```
+
+We'll explain in class briefly what this Jade means and how it relates to HTML. Take a look at <http://naltatis.github.com/jade-syntax-docs/> to help follow along in class.
+
+Right click the page and take a look at the source code. It looks like this:
+
+```html
+<form method="post" action="/">
+  New todo item: <input name="todo">
+  <button type=submit>Done</button>
+</form>
+```
+
+When you create a form, it looks at all the `<input>` and `<button>` elements inside of it. These are the data that get sent whenever you submit the form. When you type in the `<input name="todo">` and change it to a TODO list item, that's what gets sent to the server as the value `req.body.todo`.
+
+The two attributes on `<form>` are:
+
+* `method="post"` &mdash; Forms submit their data as GET or POST. We want to POST this data to the server to add a new entry to the list. POSTed data shows up in `req.body`.
+* `action="/"` &mdash; This controls what route handles the data you're submitting. We have an `app.post('/', routes.index_post)` that handles our data.
+
+Can you now figure out the way in which the delete button works?
+
+## Static Content
+
+You don't only have to server templates to your users. You can also serve them files from your computer unmodified.
+
+In your application folder exists a folder `public/images`. In this directory either save or `wget` this image and name it "david.jpg":
+
+![https://twimg0-a.akamaihd.net/profile_images/1584353041/267776_10150244291269010_590714009_7743869_8142651_n.jpg](https://twimg0-a.akamaihd.net/profile_images/1584353041/267776_10150244291269010_590714009_7743869_8142651_n.jpg)
+
+Run your server (`node app`) and go to [http://localhost:3000/images/david.jpg](http://localhost:3000/images/david.jpg). And that's how you store images! And movies, stylesheets, and scripts! Think of all the cat pictures! You'll build the next Reddit in no time.
 
 ## Client-side JavaScript
 
@@ -295,18 +376,52 @@ $('body').append('<img src="http://i.minus.com/iFxelkyarGr5D.gif">');
 Now try the following script:
 
 ```
-$('*').css('background-image', 'url(http://omfgdogs.com/omfgdogs.gif);');
+$('*').css('background-image', 'url(http://omfgdogs.com/omfgdogs.gif)');
 ```
 
 Oh dear god.
 
 ## Embedding JavaScript into your page
 
+To embed JavaScript into your page, we first need to create a script.
 
+In your `layout.jade`, you will want to make your `head` look like the following:
+
+```
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='http://code.jquery.com/jquery.js')
+    script(src='/javascripts/todo.js')
+```
+
+Create a new file in your `public/javascripts/` directory called `todo.js`. Save this as the contents of it:
+
+```js
+$(function () {
+  $('body').html('<h1><marquee>WHEEE</marquee></h1>')
+});
+```
+
+Restart your server (or if you're using supervisor, it will be done already). Note the wrapper `$(function () { ... })` around the entire script...
+
+## Events
+
+Set your `todo.js` content to:
+
+```js
+$(function () {
+  $('body').html('<h1><marquee>WHEEE</marquee></h1>')
+});
+```
 
 ## Communication between the Server and the Client: Ajax
 
-**Ajax** refers to communicating between a web page and a server using JavaScript. 
+**Ajax** refers to communicating between a web page and a server using JavaScript. After your page is loaded, JavaScript takes over the role of making HTTP requests in order to add interactivity to the page.
+
+```
+$.post("/", {todo: 'hi'});
+```
 
 Communication between the client and the server-side using HTTP requests.
 
