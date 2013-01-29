@@ -2,49 +2,55 @@
 
 We'll be covering javascript on the client side.
 
-## Recap
-
-* **Express** is a *server* library. It is an abstraction for Node.
-* **Jade** is a way to make *templates*, HTML pages that can have strings and other content easily added into them.
-* **Mongoose** is a *database* library. It is an abstraction for MongoDB.
-
 ## A few points, motivated by HW feedback
 
-**Mongoose queries**: the two types 
+**Recap**:
 
-type one: 
+* **Express** is a *server* library. It is an abstraction for Node. Reference is here: <http://nodejs.org/api/>
+* **Jade** is a way to make *templates*, HTML pages that can have strings and other content easily added into them. Refernce is here: <http://naltatis.github.com/jade-syntax-docs/>
+* **Mongoose** is a *database* library. It is an abstraction for MongoDB. Reference is here: <http://mongoosejs.com/docs/guide.html>
+
+**Mongoose queries** 
+
+This:
 
 ```
-Person.find({name,"ronald"},function(err,person){console.log(person)})
+Person.find({name,"ronald"}, function (err,person) {
+  console.log(person)
+})
 ```
 
-type two: 
+is equivalent to:
 
 ```
-Person.find({name,"ronald"}).exec(function(err,person){console.log(person)})
+Person.find({name,"ronald"}).exec(function (err,person) {
+  console.log(person)
+})
 ```
 
-The second one is cleaner, and lets you chain stuff together, like this:
+The second one is cleaner, and lets you chain stuff other functions inbetween the call to **find** and **exec**, like this:
 
 ```
 people
-.where("name","ronald")
-.where('age').gte(25)
-.where('interests').in(['movies', 'long walks', 'mongoDB'])
-.select('name', 'age', 'interests')
-.skip(20)
-.limit(10)
-.asc('age')
-.exec(function(err,people){ console.log(people)});
+  .where("name","ronald")
+  .where('age').gte(25)
+  .where('interests').in(['movies', 'long walks', 'mongoDB'])
+  .select('name', 'age', 'interests')
+  .skip(20)
+  .limit(10)
+  .asc('age')
+  .exec(function (err,people) {
+    console.log(people)
+  });
 ```
 
 There are ton of commands you can chain to a Mongoose query, check out the page [here](http://mongoosejs.com/docs/2.7.x/docs/query.html) for a description of all of them.
 
-**Developer Tools**
+**Text Editing**
 
-Sublime Text, get it.
+Sublime Text is the best text editor. Get it.
 
-Ubuntu:
+*Install on Ubuntu:*
 
 ```
 sudo add-apt-repository ppa:webupd8team/sublime-text-2
@@ -52,38 +58,33 @@ sudo apt-get update
 sudo apt-get install sublime-text
 ```
 
-OSX:
+*Install on OSX:*
 
-download it [here](http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1.dmg)
+Download it [here](http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1.dmg)
 
-Some Handy commands:
-Comment chunk of code: command+ / or crtl + /
+*Some Handy commands:*
 
-Also, add supervisor to your list of dependencies, in your package.json, for every project. 
+Comment chunk of code: `command + /` (OSX) or `ctrl + /` (Linux)
+
+**Restart Server Automatically**
+
+Install `supervisor` to automatically restart your server whenever you make a change to your code. No more having to restart your server manually!
+
+Run:
 
 ```
-{
-  "name": "app-name",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "start": "node app"
-  },
-  "dependencies": {
-    "express": "3.0.6",
-    "jade": "*",
-    "mongoose": "3.x",
-    "supervisor": "*"    <-------------
-  }
-}
+sudo npm install -g supervisor
 ```
 
-This module automatically restarts your server whenever you make a relevant change to a file. So no more restarting your server manually.
+Then instead of `node app.js`, you can do:
 
+```
+supervisor app.js
+```
 
-## Two More Express Features
+## The drill
 
-You know the drill. Fork this repository, then:
+You know it. Fork this repository, then:
 
 ```
 $ git clone https://github.com/______/olinjs-3.git
@@ -102,6 +103,8 @@ In your application folder exists a folder `public/images`. In this directory ei
 
 Run your server (`node app`) and go to [http://localhost:3000/images/david.jpg](http://localhost:3000/images/david.jpg). And that's how you store images! And movies, stylesheets, and scripts! Think of all the cat pictures! You'll build the next Reddit in no time.
 
+<!--
+
 ### Sessions
 
 Last class we showed you how to use a database. This class we're going to quickly introduce the concept of sessions. A **session** is a data store that is unique to each user's web browser, but the information is only visible to the server. Think of it as giving each user a unique order number, and when they request a webpage, you can customize it to their liking&mdash;but if they lose their order number, that information is gone. Thus, it's generally only appropriate to store some kinds of data in a session, like what account the user is logged in as or temporary settings. Depending on the user's setup, the next time they close their browser the session may be cleared.
@@ -116,6 +119,8 @@ For completeness sake, let's consider other ways we can explore data:
 1. **Cookies.** Cookies are strings of information you store on a user's computer. Unlike sessions, cookies are generally in plaintext, i.e. a user can go ahead and edit their cookies. Cookies would be useful to store a user's preferred font size, but not their username, lest someone evil go ahead and set `document.cookie = 'username=supersecretadmindad'`. Muy mal.
 1. **Global variables.** You might hear them described as "bad" or "evil" but our only consideration is that global variables go away when your server resets. On Heroku, your server might reset as often as every 10 minutes! Don't expect global variables to last long.
 1. **Files.** Though we haven't covered it yet, Node can read and write files on your computer. Heroku doesn't let you write files, however, so we are going to remain willfully ignorant for a while.
+
+-->
 
 ## Quick overview on HTML
 
