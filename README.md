@@ -1,6 +1,10 @@
-#olin.js #3 — client side JS
+# olin.js #3 — client side JS
 
 We'll be covering javascript on the client side.
+
+## Update your Github avatars and profiles information
+
+We're advertising you on <http://olinjs.github.com/>. This helps engage our sponsors and gives you wicked props. You'll have to go to <https://github.com/settings/profile> to update your profile and <gravatar.com> to update your avatar. Do this and you'll be famous.
 
 ## A few points, motivated by HW feedback
 
@@ -229,7 +233,7 @@ JavaScript is a language. Node (server-side) is a "platform". Your browser (clie
 
 ### Simple Example
 
-Go to <http://jsfiddle.net/C7S4y/2/>. 
+Go to <http://jsfiddle.net/yqU6K/>. We want to 
 
 ## jQuery
 
