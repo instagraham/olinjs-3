@@ -10,10 +10,15 @@ We'll be covering javascript on the client side.
 
 ## A few points, motivated by HW feedback
 
-**Mongoose queries**: 
+**Mongoose queries**: the two types 
 
-type one: ```Person.find({name,"ronald"},function(err,person){console.log(person)})```
-type two: ```Person.find({name,"ronald"}).exec(function(err,person){console.log(person)})```
+type one: 
+
+```Person.find({name,"ronald"},function(err,person){console.log(person)})```
+
+type two: 
+
+```Person.find({name,"ronald"}).exec(function(err,person){console.log(person)})```
 
 The second one is cleaner, and lets you chain stuff together, like this:
 
