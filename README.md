@@ -4,9 +4,9 @@ We'll be covering javascript on the client side.
 
 ## Recap
 
-* Express is a server library
-* Jade is a templating library
-* Mongoose is a database library
+* **Express** is a *server* library. It is an abstraction for Node.
+* **Jade** is a way to make *templates*, HTML pages that can have strings and other content easily added into them.
+* **Mongoose** is a *database* library. It is an abstraction for MongoDB.
 
 ## Two More Express Features
 
@@ -68,9 +68,33 @@ Makes editing HTML easy
 
 * What does $() do?
 
-Go to your console and type `$('p').hide()`. Now type `$('p').show()`. Then `$('p').css('background', 'blue')`. Then `$('p').text("I'm sick of typing $()!")`. (Do type this out by hand, since you'll be doing this a lot.)
+Go to your console and type
 
-Selects tags, like CSS selects tags
+```js
+$('p').hide()
+```
+
+Now type
+
+```js
+$('p').show()
+```
+
+Then type
+
+```js
+$('p').css('background', 'blue')
+```
+
+*And then type*
+
+```js
+$('p').text("I'm sick of typing $()!")
+```
+
+(But do type this out by hand, since you'll be doing this a lot.)
+
+You get the idea! jQuery is a <s>fun</s> way to mix and mash up HTML that a user is viewing. jQuery is nearly universal, and a large, large percentage of the top 100 websites use it. The reason? There is a manual way to do each of these tasks, and it's grueling. 
 
 * Do some DOM manipulations.
 
@@ -80,9 +104,9 @@ Oh look you can make colors change and change text and create cat images
 
 EW no
 
-## AJAX
+## Communication between the Server and the Client: Ajax
 
-* What's AJAX?
+**Ajax** refers to communicating between a web page and a server using JavaScript. 
 
 Communication between the client and the server-side using HTTP requests.
 
