@@ -186,7 +186,7 @@ For completeness sake, let's consider other ways we can explore data:
 
 ## Quick overview on HTML
 
-**H**yper **T**ext **M**arkup **L**anguage is what is used to describe web pages. HTML consists of a set of **tags** that tell your browser what to render on your page, interspersed with text. A *start tag* looks like this `<tag>` and is finished with an *end tag* `</tag>`. A start tag can also include *attributes*, like `<a href="http://olinjs.github.com/">Olin.js is awesome</a>`. Here `href` is an attribute with the quoted value `http://olinjs.github.com/` and the content `Olin.js is awesome`.
+**H**yper **T**ext **M**arkup **L**anguage is what is used to describe web pages. HTML consists of a set of **tags** that tell your browser what to render on your page, interspersed with text. A *start tag* looks like this `<tag>` and is finished with an *end tag* `</tag>`. A start tag can also include *attributes*, like `<a href="http://olinjs.github.com/">Olin.js is awesome</a>`. Here `href` is an attribute with the quoted value `http://olinjs.github.com/` and the content `Olin.js is awesome`. The start tags and the content between them is also called an `HTML element`.
 
 You can right click any webpage and click "View Source", and you'll see what HTML any page is made of. Pretty neat.
 
@@ -247,57 +247,62 @@ JavaScript is a language. Node (server-side) is a "platform". Your browser (clie
 
 **One important caveat:** client-side code knows nothing about your server. For all it cares you could be running Python, Ruby, ALGOL or on a [Commodore 64](www.c64web.com). So when you write JavaScript in Node.js, you can't run the same functions in your web browser. We'll explain later how to make them communicate with each other.
 
-### Simple Example
+### Developer Console
 
-Go to <http://jsfiddle.net/yqU6K/>. We want to 
+Go to <http://jsfiddle.net/yqU6K/>. We're going to open up the **developer console**.
 
-## jQuery
+* **Chrome:** Control-Shift-J/Command-Option-J
+* **Firefox:** get Chrome. (I mean, Control-Shift-K/Command-Option-K)
 
-* What is a client side library?
+You should see a line which reads `Hello Olin.js`! If you don't, refresh the page.
 
-Included via \<script\> tags.
+As you can see in the "JavaScript" panel on the page, `console.log` works the same as in Node.js! (This one's a freebie.) Try changing console.log to something more exciting:
 
-* introduce jQuery. Why do we use it?
+`alert('Come on down to Pete\'s Pizza Shop for Sweet Pizza Beats');`
 
-Makes editing HTML easy
+Then click "Run" at the top of the page. Cool, you made your first Popup ad!
 
-* What does $() do?
+### jQuery
 
-Go to your console and type
+Go to <http://jsfiddle.net/yqU6K/>. We're going to learn **jQuery**.
+
+jQuery is a way to manipulate webpages. It's all JavaScript, but it's very terse&mdash;see if you can keep up. On your webpage, go to the JavaScript panel and type in the following:
 
 ```js
 $('p').hide()
 ```
 
-Now type
-
-```js
-$('p').show()
-```
-
-Then type
+Then click "Run". Once you get it, replace that code with:
 
 ```js
 $('p').css('background', 'blue')
 ```
 
-*And then type*
+And click "Run". Next, try:
 
 ```js
-$('p').text("I'm sick of typing $()!")
+$('p').css('color', 'red').text("I'm sick of typing $()!")
 ```
 
-(But do type this out by hand, since you'll be doing this a lot.)
+Don't worry, we'll be typing this a lot! jQuery is a <s>fun</s> way to mix and mash up HTML that a user is viewing. jQuery is nearly universal, and a large, large percentage of the top 100 websites use it. The way to do this manually in (client-side) JavaScript is extremely tedious, so we're going to be willfully ignorant of that.
 
-You get the idea! jQuery is a <s>fun</s> way to mix and mash up HTML that a user is viewing. jQuery is nearly universal, and a large, large percentage of the top 100 websites use it. The reason? There is a manual way to do each of these tasks, and it's grueling. 
+`$` is very powerful. It can also add elements on to your page. Run the following script:
 
-* Do some DOM manipulations.
+```
+$('body').append('<img src="http://i.minus.com/iFxelkyarGr5D.gif">');
+```
 
-Oh look you can make colors change and change text and create cat images
+Now try the following script:
 
-* Show some jQuery libraries.
+```
+$('*').css('background-image', 'url(http://omfgdogs.com/omfgdogs.gif);');
+```
 
-EW no
+Oh dear god.
+
+## Embedding JavaScript into your page
+
+
 
 ## Communication between the Server and the Client: Ajax
 
