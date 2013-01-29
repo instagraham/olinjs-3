@@ -207,11 +207,17 @@ You can nest these tags arbitrarily (in most cases):
 </body>
 ```
 
-Those of you unfamiliar with HTML should really go through [the W3C HTML tutorial](http://www.w3schools.com/html/html_intro.asp).
-
 Great, now you can understand these non-nerdy nerd shirts. See, I told you this class would be useful.
 
 ![http://johngushue.typepad.com/photos/uncategorized/2007/03/23/body_html_code_tshirt.gif](http://johngushue.typepad.com/photos/uncategorized/2007/03/23/body_html_code_tshirt.gif)
+
+## Testing HTML
+
+Writing HTML is easy, and everyone has a web browser. There are still some tools which can come in handy. We're going to be doing some tests in this for this class. Open this address:
+
+    http://jsfiddle.net/C7S4y/1/
+
+Play around with typing HTML and clicking `Run` at the top. You'll see the page in the lower right update. If you're unfamiliar with HTML, do through [the W3C HTML tutorial](http://www.w3schools.com/html/html_intro.asp) and get more comfortable with it. In particular, take a look at **lists** and **tables**.
 
 ## Client-side JavaScript
 
@@ -221,9 +227,9 @@ JavaScript is a language. Node (server-side) is a "platform". Your browser (clie
 
 **One important caveat:** client-side code knows nothing about your server. For all it cares you could be running Python, Ruby, ALGOL or on a [Commodore 64](www.c64web.com). So when you write JavaScript in Node.js, you can't run the same functions in your web browser. We'll explain later how to make them communicate with each other.
 
+### Simple Example
 
-
-**A simple example.** Go to your webpage. If you're using Chrome 
+Go to <http://jsfiddle.net/C7S4y/2/>. 
 
 ## jQuery
 
