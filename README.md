@@ -56,6 +56,29 @@ OSX:
 
 download it [here](http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1.dmg)
 
+Some Handy commands:
+Comment chunk of code: command+ / or crtl + /
+
+Also, add supervisor to your list of dependencies, in your package.json, for every project. 
+
+```
+{
+  "name": "app-name",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "3.0.6",
+    "jade": "*",
+    "mongoose": "3.x",
+    "supervisor": "*"    <-------------
+  }
+}
+```
+
+This module automatically restarts your server whenever you make a relevant change to a file. So no more restarting your server manually.
 
 
 ## Two More Express Features
