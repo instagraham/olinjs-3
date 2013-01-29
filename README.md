@@ -108,9 +108,9 @@ sudo apt-get install sublime-text
 
 Download it [here](http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1.dmg)
 
-*Some Handy commands:*
+Read about all the cool things you can do with it [here](http://www.rockettheme.com/magazine/1319-using-sublime-text-2-for-development)
 
-Comment chunk of code: `command + /` (OSX) or `ctrl + /` (Linux)
+
 
 **Restart Server Automatically**
 
