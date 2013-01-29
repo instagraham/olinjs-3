@@ -399,11 +399,15 @@ To embed JavaScript into your page, we first need to create a script.
 In your `layout.jade`, you will want to make your `head` look like the following:
 
 ```
+doctype 5
+html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
     script(src='http://code.jquery.com/jquery.js')
     script(src='/javascripts/todo.js')
+  body
+    block content
 ```
 
 Create a new file in your `public/javascripts/` directory called `todo.js`. Save this as the contents of it:
@@ -459,16 +463,26 @@ $(function () {
 })
 ```
 
-Hint, to create a form:
+To create a form:
 
 ```
-var li = $('<li>' + $('#newinput').val() + '</li>')
-$('#todolist').append(li);
+$(function () {
+  $('#newform').on('submit', function () {
+    $.post("/", $('#newform').serialize());
 
-var form = $('<form method="post" action="/delete/'" + $('#newform li').length + '"><button>Submit</button></form>')
-$(li).append(form);
+    var li = $('<li>' + $('#newinput').val() + '</li>')
+    $('#todolist').append(li);
 
-form.on('submit', function () {
-  // Can you make the delete button do the same thing?
+    var form = $('<form method="post" action="/delete/' + $('#todolist li').length + '"><button>Delete</button></form>')
+    $(li).append(form);
+
+    form.on('submit', function () {
+      // ...
+    })
+
+    return false;
+  })
 })
 ```
+
+Can you make the delete button do the same thing?
