@@ -8,6 +8,29 @@ We'll be covering javascript on the client side.
 * **Jade** is a way to make *templates*, HTML pages that can have strings and other content easily added into them.
 * **Mongoose** is a *database* library. It is an abstraction for MongoDB.
 
+## A few points, motivated by HW feedback
+
+**Mongoose queries**: 
+
+type one: ```Person.find({name,"ronald"},function(err,person){console.log(person)})```
+type two: ```Person.find({name,"ronald"}).exec(function(err,person){console.log(person)})```
+
+The second one is cleaner, and lets you chain stuff together, like this:
+
+```
+people
+.where("name","ronald")
+.where('age').gte(25)
+.where('interests').in(['movies', 'long walks', 'mongoDB'])
+.select('name', 'age', 'interests')
+.skip(20)
+.limit(10)
+.asc('age')
+.exec(function(err,people){ console.log(people)});
+```
+
+There are ton of commands you can chain to a Mongoose query, check out the page [here](http://mongoosejs.com/docs/2.7.x/docs/query.html) for a description of all of them.
+
 ## Two More Express Features
 
 You know the drill. Fork this repository, then:
