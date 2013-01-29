@@ -44,6 +44,48 @@ people
   });
 ```
 
+But why do we need `exec` at the end? According to the [mongoose docs](http://mongoosejs.com/docs/2.7.x/docs/query.html) 
+
+```
+Query.exec
+  Executes the query passing the results to the optional callback.
+```
+
+Mongoose tries to be smart and holds off on executing most queries. Take for example our previous query where we changed 
+
+```
+people
+  .where("name","ronald")
+  .where('age').gte(25)
+  .where('interests').in(['movies', 'long walks', 'mongoDB'])
+  .select('name', 'age', 'interests')
+  .skip(20)
+  .limit(10)
+  .asc('age')
+  .exec(function (err,people) {
+    console.log(people)
+  });
+```
+
+We could do this same thing by the following pesudocode
+
+```js
+people.find({"name", "ronald"}, function(err, ronalds) {
+  ronalds.find({"age":{"$gt":25}}, function(err, twentyFives) {
+    twentyFives.find({"interests":{"$in":['movies', 'long walks', 'mongoDB']}}, function (err, sameInterests) {
+      // do more call back functions in here
+      ...
+      ...
+    });
+  });
+});
+```
+
+The difference between **chaining** the method calls to people and having a bazillion callbacks is
+
+* tons of callbacks end up looking really ugly. Imagine 7 nested callbacks. WTF is going on?
+* Each callback is actually making Mongo execute the query, which makes 7 in total. If you chain, Mongoose attempts to be smart about it and creates ONE super complicated Mongo Query that it executes only once.
+
 There are ton of commands you can chain to a Mongoose query, check out the page [here](http://mongoosejs.com/docs/2.7.x/docs/query.html) for a description of all of them.
 
 **Text Editing**
