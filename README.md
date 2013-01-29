@@ -44,6 +44,47 @@ For completeness sake, let's consider other ways we can explore data:
 1. **Global variables.** You might hear them described as "bad" or "evil" but our only consideration is that global variables go away when your server resets. On Heroku, your server might reset as often as every 10 minutes! Don't expect global variables to last long.
 1. **Files.** Though we haven't covered it yet, Node can read and write files on your computer. Heroku doesn't let you write files, however, so we are going to remain willfully ignorant for a while.
 
+## Quick overview on HTML
+
+**H**yper **T**ext **M**arkup **L**anguage is what is used to describe web pages. HTML consists of a set of **tags** that tell your browser how to render a web page. Every HTML page starts off with a 
+
+```html
+<!DOCTYPE html>
+```
+
+and ends with 
+
+```html
+</html>
+```
+
+Inside of those tags is a ```<head>``` and a ```<body>`` tag which is structured like so
+
+```html
+<!DOCTYPE html>
+    <head>
+    </head>
+    <body>
+    </body>
+</html>
+```
+
+Head tags store stuff like **metadata** which is used for stuff like Search Engine Optimization for showing up on Google. It's also used for titles of web pages. Besides that, everything should go in the body. Great, now you can understand these non-nerdy nerd shirts. See, I told you this class would be useful.
+
+![http://johngushue.typepad.com/photos/uncategorized/2007/03/23/body_html_code_tshirt.gif](http://johngushue.typepad.com/photos/uncategorized/2007/03/23/body_html_code_tshirt.gif)
+
+**Div** tags are probably the single most important tag to know. Divs are used as containers to stick other elements in. You can then move these divs around the page. 
+
+```html
+<div>
+    <p>I'm in a div!<p>
+    <span> I'm also in a div!</span>
+    <div>Divception!</div>
+</div>
+```
+
+Those of you unfamiliar with HTML should really go through [the WC3 HTML tutorial](http://www.w3schools.com/html/html_intro.asp).
+
 ## Client-side JavaScript
 
 JavaScript is a language. Node is a "platform". Your browser is also a "platform" that runs JavaScript. There are similarities and differences, so prepare your cognitive dissonance engines.
