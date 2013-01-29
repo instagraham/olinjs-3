@@ -329,7 +329,7 @@ JavaScript is a language. Node (server-side) is a "platform". Your browser (clie
 
 ### Developer Console
 
-Go to <http://jsfiddle.net/yqU6K/>. We're going to open up the **developer console**.
+Go to <http://jsfiddle.net/yqU6K/3>. We're going to open up the **developer console**.
 
 * **Chrome:** Control-Shift-J/Command-Option-J
 * **Firefox:** get Chrome. (I mean, Control-Shift-K/Command-Option-K)
@@ -344,9 +344,7 @@ Then click "Run" at the top of the page. Cool, you made your first Popup ad!
 
 ### jQuery
 
-Go to <http://jsfiddle.net/yqU6K/3/>. We're going to learn **jQuery**.
-
-jQuery is a way to manipulate webpages. It's all JavaScript, but it's very terse&mdash;see if you can keep up. On your webpage, go to the JavaScript panel and type in the following:
+We're going to learn **jQuery**. jQuery is a way to manipulate webpages. It's all JavaScript, but it's very terse&mdash;see if you can keep up. On your webpage, go to the JavaScript panel and type in the following:
 
 ```js
 $('p').hide()
@@ -380,13 +378,15 @@ $('*').css('background-image', 'url(http://omfgdogs.com/omfgdogs.gif)');
 
 Oh dear god.
 
+We can also add event listeners:
+
 ```
 $('button').on('click', function () {
   alert('button click!')
 })
 ```
 
-Also, elements can have ids. IDs are referenced by `#` then the id name.
+Also, elements can have ids. Note the `id="first"` attribute in the HTML. IDs are referenced by `#` then the id name.
 
 ```
 $('#first').css('background', 'red');
@@ -415,6 +415,8 @@ $(function () {
 ```
 
 Restart your server (or if you're using supervisor, it will be done already). Note the wrapper `$(function () { ... })` around the entire script...
+
+The `<script src="/path/to/script.js"></script>` tag embeds a script on your page. It's an individual JavaScript file.
 
 ## Communication between the Server and the Client: Ajax
 
