@@ -14,11 +14,15 @@ We'll be covering javascript on the client side.
 
 type one: 
 
-```Person.find({name,"ronald"},function(err,person){console.log(person)})```
+```
+Person.find({name,"ronald"},function(err,person){console.log(person)})
+```
 
 type two: 
 
-```Person.find({name,"ronald"}).exec(function(err,person){console.log(person)})```
+```
+Person.find({name,"ronald"}).exec(function(err,person){console.log(person)})
+```
 
 The second one is cleaner, and lets you chain stuff together, like this:
 
