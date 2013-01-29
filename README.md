@@ -126,7 +126,7 @@ supervisor app.js
 
 ## The drill
 
-You know it. Fork this repository, then:
+You know it. *Fork this repository*, then:
 
 ```
 $ git clone https://github.com/______/olinjs-3.git
@@ -166,54 +166,62 @@ For completeness sake, let's consider other ways we can explore data:
 
 ## Quick overview on HTML
 
-**H**yper **T**ext **M**arkup **L**anguage is what is used to describe web pages. HTML consists of a set of **tags** that tell your browser how to render a web page. Every HTML page starts off with a 
+**H**yper **T**ext **M**arkup **L**anguage is what is used to describe web pages. HTML consists of a set of **tags** that tell your browser what to render on your page, interspersed with text. A *start tag* looks like this `<tag>` and is finished with an *end tag* `</tag>`. A start tag can also include *attributes*, like `<a href="http://olinjs.github.com/">Olin.js is awesome</a>`. Here `href` is an attribute with the quoted value `http://olinjs.github.com/` and the content `Olin.js is awesome`.
+
+You can right click any webpage and click "View Source", and you'll see what HTML any page is made of. Pretty neat.
+
+Every webpage follows this structure:
 
 ```html
 <!DOCTYPE html>
-```
-
-and ends with 
-
-```html
+<html>
+ <head>
+   ... some information goes here ...
+ </head>
+ <body>
+   ... some content go here ...
+ </body>
 </html>
 ```
 
-Inside of those tags is a ```<head>``` and a ```<body>`` tag which is structured like so
+Inbetween head `tags` are **metadata**. The `<title>` tag sets the title of the tab you are viewing. `<meta>` tags include informations for Search Engine Optimization for showing up on Google. In addition, you can add `<script>` tags in your header; we'll get to that in your moment.
+
+All of your content goes in your `<body>`. **`<div>`** tags are the most basic tag, and denote a box, any kind of box, that stores other tags and content. To denote text which is more specific, you can use more specific tags:
+
+* `<p>...</p>` is a paragraph of text. `<h1>...</h1>` is a heading, the font size reflects this. There are headings `h1` through `h6`.
+* `<span>...</span>` denotes a span of *inline text*. You use a span where the text is inside a paragraph and next to other text, and you use a div for entire block of text.
+* `<b>...</b>` is bold text; `<i>...</i>` is italic text.
+* `<a href="http://google.com/">...</a>` makes a *hyperlink*, which is the foundation of the entire internet.
+* `<img src="http://avatars.io/facebook/timcameronryan">` is an image. Note that there is no `</img>` tag, in this case.
+
+You can nest these tags arbitrarily (in most cases):
 
 ```html
-<!DOCTYPE html>
-    <head>
-    </head>
-    <body>
-    </body>
-</html>
+<body>
+  <h1>I'm a heading!</h1>
+  <div>
+    <p>I'm in a div!<p>
+    <span> I'm also in a div!</span>
+    <div><b>Divception!</b></div>
+  </div>
+</body>
 ```
 
-Head tags store stuff like **metadata** which is used for stuff like Search Engine Optimization for showing up on Google. It's also used for titles of web pages. Besides that, everything should go in the body. Great, now you can understand these non-nerdy nerd shirts. See, I told you this class would be useful.
+Those of you unfamiliar with HTML should really go through [the W3C HTML tutorial](http://www.w3schools.com/html/html_intro.asp).
+
+Great, now you can understand these non-nerdy nerd shirts. See, I told you this class would be useful.
 
 ![http://johngushue.typepad.com/photos/uncategorized/2007/03/23/body_html_code_tshirt.gif](http://johngushue.typepad.com/photos/uncategorized/2007/03/23/body_html_code_tshirt.gif)
 
-**Div** tags are probably the single most important tag to know. Divs are used as containers to stick other elements in. You can then move these divs around the page. 
-
-```html
-<div>
-    <p>I'm in a div!<p>
-    <span> I'm also in a div!</span>
-    <div>Divception!</div>
-</div>
-```
-
-Those of you unfamiliar with HTML should really go through [the WC3 HTML tutorial](http://www.w3schools.com/html/html_intro.asp).
-
 ## Client-side JavaScript
 
-JavaScript is a language. Node is a "platform". Your browser is also a "platform" that runs JavaScript. There are similarities and differences, so prepare your cognitive dissonance engines.
+JavaScript is a language. Node (server-side) is a "platform". Your browser (client-side) is also a "platform" that runs JavaScript, with a lot of different capabilities.
 
-### Client vs Server-side
+**What is client-side JS good for?** Before, we used JavaScript to serve websites. Now we'll use client-side JS to add *interactivity* to a page. You used Jade in the last lesson to make templates that display content, forms, etc. After a user gets your template, though, they can't do much until they submit a form or go to a new page. With client-side JS, we can make your website much more useful and powerful.
 
-Client-side JavaScript is a script that runs in your browser. Effectively, client-side code knows nothing about your server. For all it cares you could be running Python, Ruby, ALGOL or on a [Commodore 64](www.c64web.com). This complicates things.
+**One important caveat:** client-side code knows nothing about your server. For all it cares you could be running Python, Ruby, ALGOL or on a [Commodore 64](www.c64web.com). So when you write JavaScript in Node.js, you can't run the same functions in your web browser. We'll explain later how to make them communicate with each other.
 
-**What is client-side JS good for?** Before we were serving up webpages. Client-side JS is all about interactivity. You used Jade to make templates that display content, forms, etc. Beyond the limits of what a template can accomplish, client-side JS picks up the slack.
+
 
 **A simple example.** Go to your webpage. If you're using Chrome 
 
