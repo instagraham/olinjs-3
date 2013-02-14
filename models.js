@@ -1,7 +1,7 @@
 
 var mongoose = require('mongoose');
 
-mongoose.connect('localhost', 'burgers')
+mongoose.connect('localhost' || process.env.MONGOLAB_URI)
 
 var schema = mongoose.Schema({
   name: String,
