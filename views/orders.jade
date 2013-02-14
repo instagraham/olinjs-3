@@ -1,0 +1,19 @@
+
+extends layout
+
+block content
+  h1 List of orders
+  for order in orders
+    if order.completed == "not yet"
+      form(action = '/order/delete', method='POST',
+      id = 'orders')
+        = order.name
+        |:  
+        for ing in order.ingredients
+          = ing.name 
+          | 
+        input(type ='hidden', value = order._id, name = "ID")
+        input(type ='submit', value = 'Completed')
+        <br>
+    <br>
+    

@@ -1,0 +1,15 @@
+
+extends layout
+
+block content
+  p Select your ingredients
+  form(action = '/order/create', method='POST', id = 'neworder')
+      |Customer:
+      input(type='textbox', name='customerName')
+      br
+      ings
+      each ing in ings
+        input(type='checkbox', name= ing._id)
+        = ing.name
+        br
+      input(type ='submit', value = 'submit')

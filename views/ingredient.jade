@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  p Enter in an ingredient
+  form(action = '/ingredient/create', method='POST')
+    |Ingredient Name
+    input(type='textbox', name = 'ingredient')
+    |Cost
+    input(type='textbox', name = 'cost')
+    input(type ='submit', value = 'submit')
